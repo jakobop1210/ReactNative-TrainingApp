@@ -1,24 +1,24 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 
-export default function MenuItem (props) {
+export default function MenuItem (name, iconUrl, navigation) {
 
-  function handlePress() {
-    
+  function navigateMainPage() {
+      navigation.navigate({name});
   }
 
   return (
       <View style={styles.menuItemContainer}>
           <Pressable
             style={({ pressed }) => pressed && styles.pressedButton}
-            onPress={handlePress}>
+            onPress={navigateMainPage}>
               <View style={styles.menuIconContainer}>
                   <Image 
                     style={styles.menuIcon}
-                    source={props.iconUrl} />
+                    source={iconUrl} />
               </View>
               <View style={styles.menuTextContainer}>
                   <Text style={styles.menuText}>
-                      {props.name}
+                      {name}
                   </Text>
               </View>
           </Pressable>
