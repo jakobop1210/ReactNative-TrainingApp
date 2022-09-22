@@ -23,8 +23,8 @@ export default function Menu() {
             headerShown: false,
             tabBarStyle: {backgroundColor: "#FFD369", height: 90},
             tabBarLabelStyle: {fontSize: 12, fontWeight: "bold"},
-            tabBarInactiveTintColor: "#393E46",
-            tabBarActiveTintColor: "#6994FF",
+            tabBarInactiveTintColor: "#656565",
+            tabBarActiveTintColor: "black",
           }}>     
           <Tab.Screen name="Home" component={HomeScreen} 
             options={{
