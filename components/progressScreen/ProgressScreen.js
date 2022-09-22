@@ -1,12 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Nutrition() {
+export default function Progress({ navigation }) {
   return (
-    <NavigationContainer>
-        <View style={styles.container}>
-            <Text>Nutrition</Text>
-        </View>
-    </NavigationContainer>
+      <View style={styles.container}>
+            <Text>Progress</Text>
+      </View>
   );
 }
 

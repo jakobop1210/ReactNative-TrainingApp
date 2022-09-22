@@ -1,12 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Progress() {
+export default function Training({ navigation }) {
   return (
-    <NavigationContainer>
-        <View style={styles.container}>
-            <Text>Progress</Text>
-        </View>
-    </NavigationContainer>
+      <View style={styles.container}>
+            <Text>Training</Text>
+      </View>
   );
 }
 

@@ -1,12 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Training() {
+export default function Home({ navigation }) {
   return (
-    <NavigationContainer>
-        <View style={styles.container}>
-            <Text>Training</Text>
-        </View>
-    </NavigationContainer>
+      <View style={styles.container}>
+            <Text>Home</Text>
+      </View>
   );
 }
 
