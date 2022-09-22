@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     backgroundColor: "#FFD369",
-    height: 100,
+    height: 90,
     position: "absolute",
     bottom: 0,
-    paddingBottom: 10
+    paddingBottom: 20
   },
 });
