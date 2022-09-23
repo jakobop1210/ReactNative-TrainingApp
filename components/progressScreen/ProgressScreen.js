@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+//Screens
+import Header from "../Header.js";
+
 export default function Progress({ navigation }) {
   return (
-      <View style={styles.container}>
-            <Text>Progress</Text>
-      </View>
+    <View style={styles.container}>
+      <Header title="Progress"/>      
+    </View>
   );
 }
 

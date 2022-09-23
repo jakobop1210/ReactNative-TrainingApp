@@ -1,9 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+//Screens
+import Header from "../Header.js";
+import ProgramOverview from "./ProgramOverview.js";
+
 export default function Training({ navigation }) {
   return (
       <View style={styles.container}>
-            <Text>Training</Text>
+          <Header title="My programs"/>
+          <ProgramOverview />
       </View>
   );
 }
@@ -11,8 +16,8 @@ export default function Training({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
     alignItems: 'center',
-    justifyContent: 'center',
     position: "realitve",
     backgroundColor: "#222831"
   },

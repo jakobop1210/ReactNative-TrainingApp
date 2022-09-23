@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+//Screens
+import Header from "../Header.js";
+
 export default function Nutrition({ navigation }) {
   return (
-      <View style={styles.container}>
-            <Text>Nutrition</Text>
-      </View>
+    <View style={styles.container}>
+      <Header title="Nutrition"/>
+   
+    </View>
   );
 }
 

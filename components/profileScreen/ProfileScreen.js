@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Home({ navigation }) {
+//Screens
+import Header from "../Header.js";
+
+export default function ProfileScreen({ navigation }) {
   return (
-      <View style={styles.container}>
-            <Text>Home</Text>
-      </View>
+    <View style={styles.container}>
+      <Header title="My profile"/>      
+    </View>
   );
 }
 
