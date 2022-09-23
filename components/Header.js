@@ -8,7 +8,7 @@ export default function Header({ title }) {
     <View style={styles.headerContainer}>
       <View style={styles.iconView}>
         <Pressable style={({pressed}) => pressed && StyleSheet.pressedIcon}>
-          <Ionicons name="settings" color="#6B6E74" size={35} />
+          <Ionicons name="settings" color="#6B6E74" size={30} />
         </Pressable>
       </View>
       <Text style={styles.title}>{title}</Text>

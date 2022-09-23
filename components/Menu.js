@@ -3,20 +3,19 @@ import { NavigationContainer } from '@react-navigation/native';
 
 //Icons
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 //Screens"
-import TrainingScreen from "../trainingScreen/TrainingScreen.js";
-import NutritionScreen from "../nutritionScreen/NutritionScreen.js";
-import ProgressScreen from "../progressScreen/ProgressScreen.js";
-import ProfileScreen from "../profileScreen/ProfileScreen.js";
+import TrainingScreen from "./trainingScreen/TrainingScreen.js";
+import NutritionScreen from "./nutritionScreen/NutritionScreen.js";
+import ProgressScreen from "./progressScreen/ProgressScreen.js";
+import ProfileScreen from "./profileScreen/ProfileScreen.js";
 
 const Tab = createBottomTabNavigator();
 
 export default function Menu() {
   return (
-    <NavigationContainer >
+    <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
             headerShown: false,

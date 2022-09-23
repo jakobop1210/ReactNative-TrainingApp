@@ -4,7 +4,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function Button({title}) {
 
     return (
-        <Pressable style={styles.newButton}>
+        <Pressable style={({ pressed }) => [
+            {
+              opacity: pressed
+                ? 0.5
+                : 1
+            },
+            styles.button
+          ]}>
             <Text style={styles.buttonText}>{title}</Text>
             <Ionicons name="add" color="#EEEEEE" size={30} />
         </Pressable>
@@ -12,12 +19,12 @@ export default function Button({title}) {
 }
 
 const styles = StyleSheet.create({
-    newButton: {
+    button: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        height: 40,
-        width: 150,  
+        height: 60,
+        width: 200,  
     },
     buttonText: {
         color: "#EEEEEE",

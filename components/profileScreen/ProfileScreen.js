@@ -5,17 +5,17 @@ import Header from "../Header.js";
 
 export default function ProfileScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Header title="My profile"/>      
-    </View>
+      <View style={styles.container}>
+          <Header title="My profile"/>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
     alignItems: 'center',
-    justifyContent: 'center',
     position: "realitve",
     backgroundColor: "#222831"
   },

@@ -4,7 +4,14 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 export default function EditButton({ }) {
 
     return (
-        <Pressable style={styles.editButton}>
+        <Pressable style={({ pressed }) => [
+            {
+              opacity: pressed
+                ? 0.2
+                : 1
+            },
+            styles.button
+          ]}>
             <Text style={styles.buttonText}>Edit</Text>
             <FontAwesome name="edit" color="#6B6E74" size={25} />
         </Pressable>
@@ -13,7 +20,7 @@ export default function EditButton({ }) {
 
 const styles = StyleSheet.create({
     
-    editButton: {
+    button: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-evenly",

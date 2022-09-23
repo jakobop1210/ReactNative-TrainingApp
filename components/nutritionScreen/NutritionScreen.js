@@ -3,20 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 //Screens
 import Header from "../Header.js";
 
-export default function Nutrition({ navigation }) {
+export default function NutritionScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Header title="Nutrition"/>
-   
-    </View>
+      <View style={styles.container}>
+          <Header title="Nutrition"/>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
     alignItems: 'center',
-    justifyContent: 'center',
     position: "realitve",
     backgroundColor: "#222831"
   },

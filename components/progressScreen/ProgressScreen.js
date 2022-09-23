@@ -3,19 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 //Screens
 import Header from "../Header.js";
 
-export default function Progress({ navigation }) {
+export default function ProgressScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Header title="Progress"/>      
-    </View>
+      <View style={styles.container}>
+          <Header title="Progress"/>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
     alignItems: 'center',
-    justifyContent: 'center',
     position: "realitve",
     backgroundColor: "#222831"
   },
