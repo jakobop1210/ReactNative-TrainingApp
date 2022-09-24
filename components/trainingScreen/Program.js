@@ -7,23 +7,19 @@ import WorkoutDescription from './WorkoutDescription';
 import EditButton from "../buttons/EditButton"
 
 
-export default function Program({ navigation, route }) {
-    const { workoutName } = route.params;
+export default function Program({ navigation, route }) { 
+    const programName = route.params.name
     const [workouts, setWorkout] = useState([
-        {workoutNr: 1, workoutDescription: <WorkoutDescription workoutName="Push 1" exercisesCount={6} totalSet={12} showWorkout={showWorkout} />},
-        {workoutNr: 2, workoutDescription: <WorkoutDescription workoutName="Pull 1" exercisesCount={7} totalSet={14} showWorkout={showWorkout} />},
-        {workoutNr: 3, workoutDescription: <WorkoutDescription workoutName="Push 2" exercisesCount={7} totalSet={15} showWorkout={showWorkout} />},
-        {workoutNr: 4, workoutDescription: <WorkoutDescription workoutName="Pull 2" exercisesCount={8} totalSet={16} showWorkout={showWorkout} />},
-        {workoutNr: 5, workoutDescription: <WorkoutDescription workoutName="Legs" exercisesCount={5} totalSet={10} showWorkout={showWorkout} />},
+        {workoutNr: 1, workoutDescription: <WorkoutDescription workoutName="Push 1" exercisesCount={6} totalSet={12} />},
+        {workoutNr: 2, workoutDescription: <WorkoutDescription workoutName="Pull 1" exercisesCount={7} totalSet={14} />},
+        {workoutNr: 3, workoutDescription: <WorkoutDescription workoutName="Push 2" exercisesCount={7} totalSet={15} />},
+        {workoutNr: 4, workoutDescription: <WorkoutDescription workoutName="Pull 2" exercisesCount={8} totalSet={16} />},
+        {workoutNr: 5, workoutDescription: <WorkoutDescription workoutName="Legs" exercisesCount={5} totalSet={10} />},
     ]);
-
-    function showWorkout() {
-        navigation.navigate("Workout");
-    }
 
     return (
         <View style={styles.container}>
-            <Header title="Progam name"/>
+            <Header title={programName}/>
             <View style={styles.contentContainer}>
                 <View style={styles.buttonContainer}>
                     <EditButton />

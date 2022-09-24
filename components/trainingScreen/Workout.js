@@ -7,12 +7,14 @@ import ExerciseDescription from './ExerciseDescription';
 import EditButton from "../buttons/EditButton"
 
 
-export default function Workout({ navigation, workoutName }) {
+export default function Workout({ navigation, route }) {
+    const workoutName = route.params.name
     const [setList, changeSetLisr]= useState([
         {setNr: 1, reps: "10"},
         {setNr: 2, reps: "10"},
         {setNr: 3, reps: "10"},
     ]);
+
     const [exercises, setExercise] = useState([
         {exerciseNr: 1, exerciseDescription: <ExerciseDescription exerciseName="Incline DB press" setList={setList} />},
         {exerciseNr: 2, exerciseDescription: <ExerciseDescription exerciseName="Seated cable flies" setList={setList} />},
@@ -25,7 +27,7 @@ export default function Workout({ navigation, workoutName }) {
 
     return (
         <View style={styles.container}>
-            <Header title="Workout name"/>
+            <Header title={workoutName}/>
             <View style={styles.contentContainer}>
                 <View style={styles.editButtonContainer}>
                     <EditButton />
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#222831"
     },
     contentContainer: {
-        height: 550,
+        height: 570,
         width: "100%", 
     },
     ScrollView: {

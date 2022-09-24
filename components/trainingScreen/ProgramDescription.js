@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function ProgramDescription({programName, splitLength, focusPoint, showProgram}) {
-    const [myProgram, setProgram] = useState(0);
-
+    const navigation = useNavigation();
+   
     return (
         <Pressable 
-            onPress={() => showProgram({programName})}
+            onPress={() => {
+                navigation.navigate("Program", {
+                    name: programName
+                })
+            }}
             style={({ pressed }) => [
             {
               opacity: pressed

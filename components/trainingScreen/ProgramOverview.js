@@ -18,42 +18,23 @@ export default function ProgramOverview({ navigation }) {
                     programName="Push Pull Legs" 
                     splitLength={7} 
                     focusPoint="Chest/arms" 
-                    showProgram={showProgram}
                 />
         },
         {
             programNr: 2,
-            program: <Program programLength={5}/>, 
-            programDescription:
-                <ProgramDescription 
-                    programName="Bro split" 
-                    splitLength={5} 
-                    focusPoint="Shoulders/arms" 
-                    showProgram={showProgram}
-                />
-        },
-        {
-            programNr: 3,
             program: <Program programLength={8}/>, 
             programDescription:
                 <ProgramDescription 
                     programName="Winter 2022" 
                     splitLength={8} 
                     focusPoint="Legs" 
-                    showProgram={showProgram}
                 />
         },
     ]);
 
-    function showProgram(name) {
-        navigation.navigate("Program", {
-            programName: name
-        });
-    }
-
     return (
         <View style={styles.container}>
-            <Header title="My programs"/>
+            <Header title="My programs" showGoBackButton={false}/>
             <View style={styles.contentContainer}>
                 <ScrollView style={styles.ScrollView}>
                     {myPrograms.map(item => (

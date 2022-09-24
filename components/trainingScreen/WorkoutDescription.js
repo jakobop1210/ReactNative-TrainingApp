@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 
 export default function WorkoutDescription({workoutName, exercisesCount, totalSet, showWorkout}) {
+    const navigation = useNavigation();
 
     return (
         <Pressable 
-            onPress={showWorkout}
+            onPress={() => {
+            navigation.navigate("Workout", {
+                name: workoutName
+                })
+            }}
             style={({ pressed }) => [
             {
               opacity: pressed

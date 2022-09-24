@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-evenly",
         position: "absolute",
-        height: 40,
-        bottom: -5,
+        height: 50,
+        width: 120,
+        bottom: -7,
         right: 10,
-        width: 100,
     },
     buttonText: {
         color: "#EEEEEE",

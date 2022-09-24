@@ -2,18 +2,21 @@ import { StyleSheet, Text, Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
-export default function goBackButton() {
-
+export default function goBackButton({ showButton }) {
     const navigation = useNavigation();
+    console.log(showButton);
 
     return (
         <Pressable 
             onPress={() => navigation.goBack()}
-            style={({ pressed }) => [
+            style={({ pressed, showButton }) => [
                 {
                   opacity: pressed
                     ? 0.5
-                    : 1
+                    : 1,
+                  display: {showButton}
+                    ? "flex"
+                    : "none"
                 },
                 styles.button
             ]}>
