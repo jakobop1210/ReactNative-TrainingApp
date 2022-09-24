@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function Button({title}) {
+export default function NewProgramButton({ title }) {
 
     return (
         <Pressable style={({ pressed }) => [

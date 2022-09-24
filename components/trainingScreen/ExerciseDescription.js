@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
+import TrackWeightButton from "../buttons/TrackWeightButton";
 
-
-export default function ProgramDescription({programName, splitLength, focusPoint, showProgram}) {
-    const [myProgram, setProgram] = useState(0);
+export default function ExerciseDescription({exerciseName, setList}) {
 
     return (
-        <Pressable 
-            onPress={() => showProgram({programName})}
+        <Pressable
             style={({ pressed }) => [
             {
               opacity: pressed
@@ -18,12 +16,16 @@ export default function ProgramDescription({programName, splitLength, focusPoint
           ]}>
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.programName}>{programName}</Text>    
+                    <Text style={styles.exerciseName}>{exerciseName}</Text>    
                 </View>
-                <View style={styles.programListContainer}>
-                    <Text style={styles.programText}>Split length: {splitLength} days</Text>
-                    <Text style={styles.programText}>FocusPoint: {focusPoint}</Text>
+                <View style={styles.exerciseListContainer}>
+                    {setList.map(item => (
+                        <View key={item.setNr}>
+                            <Text style={styles.setText}>{item.reps} reps</Text>
+                        </View>
+                    ))}  
                 </View>
+                <TrackWeightButton />
             </View>
         </Pressable>
     );
@@ -33,22 +35,23 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         backgroundColor: "#393E46",
-        height: 80,
+        height: 65,
         borderRadius: 5,
         padding: 10,
-        margin: 10
+        margin: 5
     },
-    programName: {
+    exerciseName: {
         color: "#FFD369",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "600",
-        marginLeft: 10
+        marginLeft: 10,
+        opacity: 0.9
     },
-    programListContainer: {
+    exerciseListContainer: {
         flexDirection: "row",
         marginTop: 8,
     },
-    programText: {
+    setText: {
         color: "#EEEEEE",
         marginLeft: 10
     }

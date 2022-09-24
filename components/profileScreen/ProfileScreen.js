@@ -6,7 +6,7 @@ import Header from "../Header.js";
 export default function ProfileScreen({ navigation }) {
   return (
       <View style={styles.container}>
-          <Header title="My profile"/>
+        
       </View>
   );
 }

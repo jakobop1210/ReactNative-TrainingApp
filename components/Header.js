@@ -1,18 +1,22 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import EditButton from './buttons/EditButton';
+import GoBackButton from "./buttons/GoBackButton";
 
 export default function Header({ title }) {
 
+  function goBack() {
+    
+  }
+
   return (
     <View style={styles.headerContainer}>
+      <GoBackButton />
       <View style={styles.iconView}>
-        <Pressable style={({pressed}) => pressed && StyleSheet.pressedIcon}>
+        <Pressable>
           <Ionicons name="settings" color="#6B6E74" size={30} />
         </Pressable>
       </View>
       <Text style={styles.title}>{title}</Text>
-      <EditButton />
     </View>
   );
 } 
@@ -23,18 +27,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-end",
     width: "100%",
-    height: 110,
+    height: 120,
     paddingBottom: 10,
-    borderBottomColor: "#393E46",
-    borderBottomWidth: 1,
+    backgroundColor: "#222831",
   },
   iconView: {
     position: "absolute",
-    left: 15,
+    right: 20,
     bottom: 10
   },
   title: {
     color: "#FFD369",
     fontSize: 30
-  }
+  },
 });

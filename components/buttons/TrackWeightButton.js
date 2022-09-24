@@ -1,5 +1,5 @@
 import { StyleSheet, Text, Pressable, View } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default function EditButton({ }) {
 
@@ -12,8 +12,8 @@ export default function EditButton({ }) {
             },
             styles.button
           ]}>
-            <Text style={styles.buttonText}>Edit</Text>
-            <Entypo name="edit" color="#EEEEEE" size={20} />
+            <Text style={styles.buttonText}>Track weight</Text>
+            <FontAwesome name="edit" color="#EEEEEE" size={15} />
         </Pressable>
     );
 }
@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
         justifyContent: "space-evenly",
         position: "absolute",
         height: 40,
-        top: 0,
-        right: 5,
-        width: 80,
+        bottom: -5,
+        right: 10,
+        width: 100,
     },
     buttonText: {
         color: "#EEEEEE",
-        fontSize: 20,
+        fontSize: 13,
     }
 });

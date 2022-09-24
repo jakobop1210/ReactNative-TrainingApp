@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 
 //Components
-import Button from '../buttons/Button';
+import NewPorgramButton from '../buttons/NewProgramButton';
 import Header from '../Header';
 import ProgramDescription from './ProgramDescription';
 import Program from './Program'; 
@@ -18,7 +18,7 @@ export default function ProgramOverview({ navigation }) {
                     programName="Push Pull Legs" 
                     splitLength={7} 
                     focusPoint="Chest/arms" 
-                    program=""
+                    showProgram={showProgram}
                 />
         },
         {
@@ -29,7 +29,7 @@ export default function ProgramOverview({ navigation }) {
                     programName="Bro split" 
                     splitLength={5} 
                     focusPoint="Shoulders/arms" 
-                    program=""
+                    showProgram={showProgram}
                 />
         },
         {
@@ -40,10 +40,16 @@ export default function ProgramOverview({ navigation }) {
                     programName="Winter 2022" 
                     splitLength={8} 
                     focusPoint="Legs" 
-                    program=""
+                    showProgram={showProgram}
                 />
         },
     ]);
+
+    function showProgram(name) {
+        navigation.navigate("Program", {
+            programName: name
+        });
+    }
 
     return (
         <View style={styles.container}>
@@ -58,7 +64,7 @@ export default function ProgramOverview({ navigation }) {
                 </ScrollView>
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="New program"/>
+                <NewPorgramButton title="New program" />
             </View>
         </View>
 
@@ -70,7 +76,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         alignItems: 'center',
-        position: "realitve",
         backgroundColor: "#222831"
     },
     contentContainer: {

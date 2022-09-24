@@ -5,12 +5,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //Screens 
 import ProgramOverview from "./ProgramOverview";
 import Program from './Program';
+import Workout from './Workout';
 
 const Stack = createNativeStackNavigator();
 
-export default function Training() {
-    const [screenTitle, setScreenTitle] = useState("My programs");
-
+export default function TrainingScreen() {
+    
     return (
         <Stack.Navigator
           screenOptions={{
@@ -24,6 +24,11 @@ export default function Training() {
               name="Program"
               component={Program}
             /> 
+            <Stack.Screen 
+              name="Workout"
+              component={Workout}
+            /> 
         </Stack.Navigator>
     );
 }
+

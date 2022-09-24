@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 
 
-export default function ProgramDescription({programName, splitLength, focusPoint, showProgram}) {
-    const [myProgram, setProgram] = useState(0);
+export default function WorkoutDescription({workoutName, exercisesCount, totalSet, showWorkout}) {
 
     return (
         <Pressable 
-            onPress={() => showProgram({programName})}
+            onPress={showWorkout}
             style={({ pressed }) => [
             {
               opacity: pressed
@@ -18,11 +17,11 @@ export default function ProgramDescription({programName, splitLength, focusPoint
           ]}>
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.programName}>{programName}</Text>    
+                    <Text style={styles.workoutName}>{workoutName}</Text>    
                 </View>
-                <View style={styles.programListContainer}>
-                    <Text style={styles.programText}>Split length: {splitLength} days</Text>
-                    <Text style={styles.programText}>FocusPoint: {focusPoint}</Text>
+                <View style={styles.workoutListContainer}>
+                    <Text style={styles.workoutText}>Exercises: {exercisesCount}</Text>
+                    <Text style={styles.workoutText}>Total set: {totalSet}</Text>
                 </View>
             </View>
         </Pressable>
@@ -38,17 +37,17 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 10
     },
-    programName: {
+    workoutName: {
         color: "#FFD369",
         fontSize: 20,
         fontWeight: "600",
         marginLeft: 10
     },
-    programListContainer: {
+    workoutListContainer: {
         flexDirection: "row",
         marginTop: 8,
     },
-    programText: {
+    workoutText: {
         color: "#EEEEEE",
         marginLeft: 10
     }
