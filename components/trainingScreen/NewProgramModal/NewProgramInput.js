@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, Modal, View, Text } from 'react-native';
+import { StyleSheet, Modal, View, Text, TextInput } from 'react-native';
 
 //Components
 import ProgramDescriptionInput from './ProgramDescriptionInput';
-import WorkoutDescriptionInput from './WorkoutDescriptionInput';
+import AddWorkoutsInput from './AddWorkoutsInput';
 import ExitButton from '../../buttons/ExitButton';
 
-export default function NewProgramInput({ showModal, exitModal }) {
+export default function NewProgramInput({ showModal, exitModal, addProgram }) {
     const [inputScreen, setInputScreen] = useState(< ProgramDescriptionInput showNextScreen={goToNextScreen} />);
 
     function goToNextScreen() {
-        setInputScreen(<WorkoutDescriptionInput goBack={showPreviousScreen} exitModal={exitModal} />);
+        setInputScreen(<AddWorkoutsInput 
+            goBack={showPreviousScreen} 
+            exitModal={exitModal} 
+            addProgram={addProgram}
+        />);
     }
 
     function showPreviousScreen() {
@@ -63,5 +67,5 @@ const styles = StyleSheet.create({
     newProgramHeader: {
         color: "#FFD369",
         fontSize: 25
-    },
+    }
 });

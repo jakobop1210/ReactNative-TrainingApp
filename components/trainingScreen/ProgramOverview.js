@@ -12,8 +12,6 @@ export default function ProgramOverview({ navigation }) {
     const [modalIsVisible, setModalIsVisible] = useState(false);
     const [myPrograms, setProgram] = useState([
         {
-            programNr: 1,
-            program: <Program programLength={7}/>, 
             programDescription:
                 <ProgramDescription 
                     programName="Push Pull Legs" 
@@ -22,8 +20,6 @@ export default function ProgramOverview({ navigation }) {
                 />
         },
         {
-            programNr: 2,
-            program: <Program programLength={8}/>, 
             programDescription:
                 <ProgramDescription 
                     programName="Winter 2022" 
@@ -32,6 +28,19 @@ export default function ProgramOverview({ navigation }) {
                 />
         },
     ]);
+
+    function addNewProgramToOverview(name, splitLength, description) {
+        setProgram([...myPrograms, 
+            {
+                programDescription:
+                    <ProgramDescription 
+                        programName={name}
+                        splitLength={splitLength} 
+                        focusPoint={description} 
+                    />            
+            }
+        ]);
+    }
 
     function showNewProgramModal() {
         setModalIsVisible(true);
@@ -44,12 +53,16 @@ export default function ProgramOverview({ navigation }) {
     return (
         <View style={styles.container}>
             <Header title="My programs" showGoBackButton={false}/>
-            <NewProgramInput showModal={modalIsVisible} exitModal={exitNewProgramModal} />
+            <NewProgramInput 
+                showModal={modalIsVisible} 
+                exitModal={exitNewProgramModal} 
+                addProgram={addNewProgramToOverview} 
+            />
             <View style={styles.contentContainer}>
                 <ScrollView style={styles.ScrollView}>
-                    {myPrograms.map(item => (
-                        <View key={item.programNr}>
-                            {item.programDescription}
+                    {myPrograms.map((element, index) => (
+                        <View key={index}>
+                            {element.programDescription}
                         </View>
                     ))}  
                 </ScrollView>
