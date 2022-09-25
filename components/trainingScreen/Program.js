@@ -19,7 +19,7 @@ export default function Program({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <Header title={programName}/>
+            <Header title={programName} showGoBackButton={true}/>
             <View style={styles.contentContainer}>
                 <View style={styles.buttonContainer}>
                     <EditButton />

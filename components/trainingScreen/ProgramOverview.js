@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, Modal } from 'react-native';
 
 //Components
 import NewPorgramButton from '../buttons/NewProgramButton';
 import Header from '../Header';
 import ProgramDescription from './ProgramDescription';
 import Program from './Program'; 
-
+import NewProgramInput from './NewProgramModal/NewProgramInput';
 
 export default function ProgramOverview({ navigation }) {
+    const [modalIsVisible, setModalIsVisible] = useState(false);
     const [myPrograms, setProgram] = useState([
         {
             programNr: 1,
@@ -32,9 +33,18 @@ export default function ProgramOverview({ navigation }) {
         },
     ]);
 
+    function showNewProgramModal() {
+        setModalIsVisible(true);
+    }
+
+    function exitNewProgramModal() {
+        setModalIsVisible(false);
+    }
+ 
     return (
         <View style={styles.container}>
             <Header title="My programs" showGoBackButton={false}/>
+            <NewProgramInput showModal={modalIsVisible} exitModal={exitNewProgramModal} />
             <View style={styles.contentContainer}>
                 <ScrollView style={styles.ScrollView}>
                     {myPrograms.map(item => (
@@ -45,9 +55,9 @@ export default function ProgramOverview({ navigation }) {
                 </ScrollView>
             </View>
             <View style={styles.buttonContainer}>
-                <NewPorgramButton title="New program" />
+                <NewPorgramButton title="New program" showModal={showNewProgramModal} />
             </View>
-        </View>
+        </View>  
 
     );
 }

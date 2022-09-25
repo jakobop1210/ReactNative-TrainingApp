@@ -1,14 +1,12 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function goBackButton() {
-    const navigation = useNavigation();
+export default function ModalGoBackButton({ goBack }) {
 
     return (
         <Pressable 
-            onPress={() => navigation.goBack()}
-            style={({ pressed, showButton }) => [
+            onPress={goBack}
+            style={({ pressed }) => [
                 {
                   opacity: pressed
                     ? 0.5
@@ -16,7 +14,7 @@ export default function goBackButton() {
                 },
                 styles.button
             ]}>
-            <Ionicons name="arrow-back" color="#6B6E74" size={40} />
+            <Ionicons name="arrow-back" color="#6B6E74" size={30} />
         </Pressable>
     );
 }
@@ -27,8 +25,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         position: "absolute",
-        bottom: 0,
-        left: 15,
+        top: 0,
+        left: 0,
         height: 50,
         width: 60,  
     },

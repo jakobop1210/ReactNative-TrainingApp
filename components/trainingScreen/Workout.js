@@ -27,7 +27,7 @@ export default function Workout({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <Header title={workoutName}/>
+            <Header title={workoutName} showGoBackButton={true}/>
             <View style={styles.contentContainer}>
                 <View style={styles.editButtonContainer}>
                     <EditButton />

@@ -1,36 +1,31 @@
-import { StyleSheet, Text, Pressable } from 'react-native';
+import { StyleSheet, Text, Pressable, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function NewProgramButton({ title, showModal }) {
+export default function AddButton({ addInput }) {
 
     return (
         <Pressable 
-            onPress={showModal}
+            onPress={addInput}
             style={({ pressed }) => [
             {
               opacity: pressed
-                ? 0.5
+                ? 0.4
                 : 1
             },
             styles.button
           ]}>
-            <Text style={styles.buttonText}>{title}</Text>
             <Ionicons name="add" color="#EEEEEE" size={30} />
         </Pressable>
     );
 }
 
 const styles = StyleSheet.create({
+    
     button: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
-        height: 60,
-        width: 200,  
+        justifyContent: "space-evenly",
+        height: 50,
+        width: 60,
     },
-    buttonText: {
-        color: "#EEEEEE",
-        fontSize: 20,
-        fontWeight: "600"
-    }
 });
