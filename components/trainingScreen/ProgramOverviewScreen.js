@@ -1,45 +1,37 @@
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, View, Modal } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 
 //Components
-import NewPorgramButton from '../buttons/NewProgramButton';
 import Header from '../Header';
-import ProgramDescription from './ProgramDescription';
-import Program from './Program'; 
-import NewProgramInput from './NewProgramModal/NewProgramInput';
+import NewPorgramButton from '../buttons/NewProgramButton';
+import ProgramDescriptionContainer from './ProgramDescriptionContainer';
+import NewProgramModal from './NewProgram/NewProgramModal';
 
-export default function ProgramOverview({ navigation }) {
+export default function ProgramOverviewScreen() {
     const [modalIsVisible, setModalIsVisible] = useState(false);
     const [myPrograms, setProgram] = useState([
         {
             programDescription:
-                <ProgramDescription 
+                <ProgramDescriptionContainer 
                     programName="Push Pull Legs" 
                     splitLength={7} 
                     focusPoint="Chest/arms" 
                 />
-        },
-        {
-            programDescription:
-                <ProgramDescription 
-                    programName="Winter 2022" 
-                    splitLength={8} 
-                    focusPoint="Legs" 
-                />
-        },
+        }
     ]);
 
-    function addNewProgramToOverview(name, splitLength, description) {
+    function addNewProgramToOverview(name, description) {
         setProgram([...myPrograms, 
             {
                 programDescription:
-                    <ProgramDescription 
-                        programName="Tes"
+                    <ProgramDescriptionContainer 
+                        programName="Test"
                         splitLength={7} 
-                        focusPoint="Halla dette er en test" 
+                        focusPoint="Halla test" 
                     />            
             }
         ]);
+        console.log(myPrograms.length);
     }
 
     function showNewProgramModal() {
@@ -53,11 +45,6 @@ export default function ProgramOverview({ navigation }) {
     return (
         <View style={styles.container}>
             <Header title="My programs" showGoBackButton={false}/>
-            <NewProgramInput 
-                showModal={modalIsVisible} 
-                exitModal={exitNewProgramModal} 
-                addProgram={addNewProgramToOverview} 
-            />
             <View style={styles.contentContainer}>
                 <ScrollView style={styles.ScrollView}>
                     {myPrograms.map((element, index) => (
@@ -70,6 +57,11 @@ export default function ProgramOverview({ navigation }) {
             <View style={styles.buttonContainer}>
                 <NewPorgramButton title="New program" showModal={showNewProgramModal} />
             </View>
+            <NewProgramModal 
+                showModal={modalIsVisible} 
+                exitModal={exitNewProgramModal} 
+                addProgram={addNewProgramToOverview} 
+            />
         </View>  
 
     );

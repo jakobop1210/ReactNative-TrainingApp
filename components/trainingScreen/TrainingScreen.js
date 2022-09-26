@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //Screens 
-import ProgramOverview from "./ProgramOverview";
-import Program from './Program';
-import Workout from './Workout';
+import ProgramOverviewScreen from "./ProgramOverviewScreen";
+import ProgramScreen from './ProgramScreen';
+import WorkoutScreen from './WorkoutScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,16 +15,16 @@ export default function TrainingScreen() {
             headerShown: false
         }}> 
             <Stack.Screen 
-              name="ProgramOverview"
-              component={ProgramOverview}
+              name="ProgramOverviewScreen"
+              component={ProgramOverviewScreen}
             />
             <Stack.Screen 
-              name="Program"
-              component={Program}
+              name="ProgramScreen"
+              component={ProgramScreen}
             /> 
             <Stack.Screen 
-              name="Workout"
-              component={Workout}
+              name="WorkoutScreen"
+              component={WorkoutScreen}
             /> 
         </Stack.Navigator>
     );

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function WorkoutDescription({workoutName, exercisesCount, totalSet, showWorkout}) {
-    const navigation = useNavigation();
 
+export default function ProgramDescriptionContainer({ programName, splitLength, focusPoint }) {
+    const navigation = useNavigation();
+   
     return (
         <Pressable 
             onPress={() => {
-            navigation.navigate("Workout", {
-                name: workoutName
+                navigation.navigate("ProgramScreen", {
+                    name: programName
                 })
             }}
             style={({ pressed }) => [
@@ -22,11 +22,11 @@ export default function WorkoutDescription({workoutName, exercisesCount, totalSe
           ]}>
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.workoutName}>{workoutName}</Text>    
+                    <Text style={styles.programName}>{programName}</Text>    
                 </View>
-                <View style={styles.workoutListContainer}>
-                    <Text style={styles.workoutText}>Exercises: {exercisesCount}</Text>
-                    <Text style={styles.workoutText}>Total set: {totalSet}</Text>
+                <View style={styles.programListContainer}>
+                    <Text style={styles.programText}>Split length: {splitLength} days</Text>
+                    <Text style={styles.programText}>FocusPoint: {focusPoint}</Text>
                 </View>
             </View>
         </Pressable>
@@ -42,17 +42,17 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 10
     },
-    workoutName: {
+    programName: {
         color: "#FFD369",
         fontSize: 20,
         fontWeight: "600",
         marginLeft: 10
     },
-    workoutListContainer: {
+    programListContainer: {
         flexDirection: "row",
         marginTop: 8,
     },
-    workoutText: {
+    programText: {
         color: "#EEEEEE",
         marginLeft: 10
     }

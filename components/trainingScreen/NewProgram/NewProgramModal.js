@@ -9,7 +9,7 @@ import NextButton from '../../buttons/NextButton';
 import CreateProgramButton from '../../buttons/CreateProgramButton';
 import ModalGoBackButton from '../../buttons/ModalGoBackButton';
 
-export default function NewProgramInput({ showModal, exitModal, addProgram }) {
+export default function NewProgramModal({ showModal, exitModal, addProgram }) {
     const [inputScreen, setInputScreen] = useState(< ProgramDescriptionInput showNextScreen={goToNextScreen} />);
     const [buttonShowed, setButtonShowed] = useState(<NextButton showNextScreen={goToNextScreen}/>)
     const [goBackButton, setGoBackButtonVisibility] = useState(<></>);

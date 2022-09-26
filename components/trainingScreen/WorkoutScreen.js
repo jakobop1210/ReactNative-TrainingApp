@@ -7,7 +7,7 @@ import ExerciseDescription from './ExerciseDescription';
 import EditButton from "../buttons/EditButton"
 
 
-export default function Workout({ navigation, route }) {
+export default function WorkoutScreen({ route }) {
     const workoutName = route.params.name
     const [setList, changeSetLisr]= useState([
         {setNr: 1, reps: "10"},
