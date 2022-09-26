@@ -1,11 +1,11 @@
 import { StyleSheet, Text, Pressable, View } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function EditButton({ edit }) {
+export default function DeleteButton( {onDelete, programNrDeleted} ) {
 
     return (
         <Pressable 
-            onPress={edit}
+            onPress={() => onDelete(programNrDeleted)}
             style={({ pressed }) => [
             {
               opacity: pressed
@@ -14,8 +14,8 @@ export default function EditButton({ edit }) {
             },
             styles.button
           ]}>
-            <Text style={styles.buttonText}>Edit</Text>
-            <Entypo name="edit" color="#EEEEEE" size={20} />
+            <Text style={styles.buttonText}>Delete</Text>
+            <MaterialCommunityIcons name="delete-outline" color="red" size={20} />
         </Pressable>
     );
 }
@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
         position: "absolute",
         height: 40,
         top: 10,
-        right: 5,
+        right: 0,
         width: 80,
+        zIndex: 1
     },
     buttonText: {
         color: "#EEEEEE",

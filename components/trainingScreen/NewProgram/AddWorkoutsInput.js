@@ -17,7 +17,7 @@ export default function AddWorkoutsInput() {
     ]);
 
     function addWorkoutInput() {
-        setWorkoutInputs([...workoutInputs, 
+        setWorkoutInputs(workoutInputs => [...workoutInputs, 
             {
                 inputLabel: <Text style={styles.inputLabel}>Day {workoutInputs.length + 1}</Text>,
                 textInput: <TextInput

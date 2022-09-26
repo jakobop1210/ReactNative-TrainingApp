@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-
 export default function ProgramDescriptionContainer({ programName, splitLength, focusPoint }) {
     const navigation = useNavigation();
-   
+
     return (
         <Pressable 
             onPress={() => {
@@ -37,23 +36,23 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         backgroundColor: "#393E46",
-        height: 80,
+        height: 110,
         borderRadius: 5,
-        padding: 10,
+        padding: 15,
         margin: 10
     },
     programName: {
         color: "#FFD369",
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: "600",
         marginLeft: 10
     },
     programListContainer: {
         flexDirection: "row",
-        marginTop: 8,
+        marginTop: 15,
     },
     programText: {
         color: "#EEEEEE",
-        marginLeft: 10
+        marginLeft: 8
     }
 });

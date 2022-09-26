@@ -3,14 +3,21 @@ import { StyleSheet, ScrollView, View } from 'react-native';
 
 //Components
 import Header from '../Header';
-import NewPorgramButton from '../buttons/NewProgramButton';
 import ProgramDescriptionContainer from './ProgramDescriptionContainer';
 import NewProgramModal from './NewProgram/NewProgramModal';
+import NewPorgramButton from '../buttons/NewProgramButton';
+import EditButton from "../buttons/EditButton";
+import DoneButton from '../buttons/DoneButton';
+import DeleteButton from "../buttons/DeleteButton";
 
 export default function ProgramOverviewScreen() {
+    const newProgramButton = <NewPorgramButton title="New program" showModal={showNewProgramModal} />;
     const [modalIsVisible, setModalIsVisible] = useState(false);
+    const [editMode, setEditMode] = useState(false);
+    const [bottomScreenButton, setBottomScreenButton] = useState(newProgramButton);
     const [myPrograms, setProgram] = useState([
         {
+            programNr: Math.random(),
             programDescription:
                 <ProgramDescriptionContainer 
                     programName="Push Pull Legs" 
@@ -21,17 +28,23 @@ export default function ProgramOverviewScreen() {
     ]);
 
     function addNewProgramToOverview(name, description) {
-        setProgram([...myPrograms, 
+        setProgram(myPrograms => [...myPrograms, 
             {
-                programDescription:
-                    <ProgramDescriptionContainer 
-                        programName="Test"
+                programNr: Math.random(),
+                programDescription: <ProgramDescriptionContainer 
+                        programName="Push Pull Legs" 
                         splitLength={7} 
-                        focusPoint="Halla test" 
-                    />            
+                        focusPoint="Chest/arms"
+                    /> 
             }
         ]);
-        console.log(myPrograms.length);
+    }
+
+    function deleteProgram(programNrDeleted) {
+        setProgram(myPrograms => 
+            myPrograms.filter(program => {
+                return program.programNr != programNrDeleted
+            }));
     }
 
     function showNewProgramModal() {
@@ -41,21 +54,40 @@ export default function ProgramOverviewScreen() {
     function exitNewProgramModal() {
         setModalIsVisible(false);
     }
+
+    function editPrograms() {
+        setEditMode(true);
+        setBottomScreenButton(<DoneButton doneEdit={doneEditPrograms}/>);
+    }
+
+    function doneEditPrograms() {
+        setEditMode(false);
+        setBottomScreenButton(newProgramButton);
+    }
  
     return (
         <View style={styles.container}>
             <Header title="My programs" showGoBackButton={false}/>
             <View style={styles.contentContainer}>
+                <View style={styles.buttonContainer}>
+                    {!editMode && <EditButton edit={editPrograms} />}
+                </View>
                 <ScrollView style={styles.ScrollView}>
                     {myPrograms.map((element, index) => (
                         <View key={index}>
+                            {editMode && 
+                                <DeleteButton 
+                                    onDelete={deleteProgram} 
+                                    programNrDeleted={element.programNr} 
+                                />
+                            }
                             {element.programDescription}
                         </View>
                     ))}  
                 </ScrollView>
             </View>
             <View style={styles.buttonContainer}>
-                <NewPorgramButton title="New program" showModal={showNewProgramModal} />
+                {bottomScreenButton}
             </View>
             <NewProgramModal 
                 showModal={modalIsVisible} 
@@ -71,6 +103,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
+        position: "relative",
         alignItems: 'center',
         backgroundColor: "#222831"
     },
@@ -81,10 +114,10 @@ const styles = StyleSheet.create({
     ScrollView: {
         flex: 1,
         flexDirection: "column",
-        padding: 20,
+        paddingLeft: 20,
         paddingRight: 40,
     },
     buttonContainer: {
-        marginTop: 40
+        height: 50,
     }
 });

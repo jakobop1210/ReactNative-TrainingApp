@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
         paddingRight: 40,
     },
     editButtonContainer: {
-        height: 40,
+        height: 50,
     }
 });

@@ -16,7 +16,7 @@ export default function NewProgramModal({ showModal, exitModal, addProgram }) {
 
     function goToNextScreen() {
         setInputScreen(<AddWorkoutsInput />);
-        setButtonShowed(<CreateProgramButton createProgram={resetWhenCreatingProgram} />);
+        setButtonShowed(<CreateProgramButton createProgram={resetModalWhenCreatingProgram} />);
         setGoBackButtonVisibility(<ModalGoBackButton goBack={showPreviousScreen} />);
     }
 
@@ -26,7 +26,7 @@ export default function NewProgramModal({ showModal, exitModal, addProgram }) {
         setGoBackButtonVisibility(<></>);
     }
 
-    function resetWhenCreatingProgram() {
+    function resetModalWhenCreatingProgram() {
         addProgram();
         showPreviousScreen();
         exitModal();
