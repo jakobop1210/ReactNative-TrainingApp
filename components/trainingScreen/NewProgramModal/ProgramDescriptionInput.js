@@ -1,7 +1,6 @@
 import { StyleSheet, Modal, View, Text, TextInput} from 'react-native';
-import NextButton from '../../buttons/NextButton';
 
-export default function ProgramDescriptionInput({ showNextScreen }) {
+export default function ProgramDescriptionInput() {
 
     return (
         <>
@@ -10,6 +9,8 @@ export default function ProgramDescriptionInput({ showNextScreen }) {
                 <TextInput
                     style={styles.newProgramInput} 
                     placeholder="program name" 
+                    autoFocus={true}
+                    maxLength={30}
                 />
             </View>
             <View>
@@ -17,6 +18,7 @@ export default function ProgramDescriptionInput({ showNextScreen }) {
                 <TextInput 
                     style={styles.newProgramInput} 
                     placeholder="short description" 
+                    maxLength={30}
                 />
             </View>
             <View>
@@ -24,10 +26,8 @@ export default function ProgramDescriptionInput({ showNextScreen }) {
                 <TextInput 
                     style={styles.newProgramInput} 
                     placeholder="split length (days)"
+                    keyboardType='numeric'
                 />
-            </View>
-            <View style={styles.nextButtonContainer}>
-                <NextButton showNextScreen={showNextScreen} />
             </View>
         </>
     );
@@ -47,9 +47,5 @@ const styles = StyleSheet.create({
         height: 35,
         backgroundColor: "#EEEEEE",
         borderRadius: 5,
-    },
-    nextButtonContainer: {
-        position: "absolute",
-        bottom: 10
     }
 });

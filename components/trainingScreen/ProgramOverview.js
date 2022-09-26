@@ -34,9 +34,9 @@ export default function ProgramOverview({ navigation }) {
             {
                 programDescription:
                     <ProgramDescription 
-                        programName={name}
-                        splitLength={splitLength} 
-                        focusPoint={description} 
+                        programName="Tes"
+                        splitLength={7} 
+                        focusPoint="Halla dette er en test" 
                     />            
             }
         ]);

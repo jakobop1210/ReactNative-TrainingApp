@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet , View, Text, TextInput, ScrollView} from 'react-native';
-import CreateProgramButton from '../../buttons/CreateProgramButton';
-import ModalGoBackButton from '../../buttons/ModalGoBackButton';
 import AddButton from '../../buttons/AddButton';
 import RemoveButton from '../../buttons/RemoveButton';
 
-export default function AddWorkoutsInput({ goBack, exitModal, addProgram }) {
+export default function AddWorkoutsInput() {
     const [workoutInputs, setWorkoutInputs] = useState([
         {
             inputLabel: <Text style={styles.inputLabel}>Day 1</Text>,
             textInput: <TextInput
                             style={styles.newProgramInput} 
                             placeholder="workout name" 
+                            autoFocus={true}
+                            maxLength={50}
                         />
         }
     ]);
@@ -23,6 +23,7 @@ export default function AddWorkoutsInput({ goBack, exitModal, addProgram }) {
                 textInput: <TextInput
                             style={styles.newProgramInput} 
                             placeholder="workout name" 
+                            maxLength={50}
                             />
             }
         ]);
@@ -34,15 +35,8 @@ export default function AddWorkoutsInput({ goBack, exitModal, addProgram }) {
         setWorkoutInputs(newWorkoutInputs);
     }
 
-    function createNewProgram() {
-        exitModal();
-        goBack();
-        addProgram;
-    }
-
     return (
         <>
-            <ModalGoBackButton goBack={goBack} />
             <View style={styles.addRemoveCotainer}>
                 <RemoveButton removeInput={removeWorkoutInput}/>
                 <AddButton addInput={addWorkoutInput}/>
@@ -55,9 +49,6 @@ export default function AddWorkoutsInput({ goBack, exitModal, addProgram }) {
                     </View>
                 ))}  
             </ScrollView>
-            <View style={styles.createProgramButtonContainer}>
-                <CreateProgramButton createProgram={createNewProgram} />
-            </View>
         </>
     );
 }
@@ -71,10 +62,6 @@ const styles = StyleSheet.create({
         marginTop: 15,
         flexDirection: "row",
         alignItems: "center"
-    },
-    createProgramButtonContainer: {
-        position: "absolute",
-        bottom: 10
     },
     inputLabel: {
         color: "#EEEEEE",
