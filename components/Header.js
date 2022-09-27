@@ -3,18 +3,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import GoBackButton from "./buttons/GoBackButton";
 
 export default function Header({ title, showGoBackButton }) {
-    let goBackButton;
-
-    if (showGoBackButton) {
-      goBackButton = <GoBackButton />;
-    } else {
-        goBackButton = <></>;
-    }
-
+  
     return (
       <View style={styles.headerContainer}>
-      
-        {goBackButton}
+        {showGoBackButton && <GoBackButton />}
         <View style={styles.iconView}>
           <Pressable>
             <Ionicons name="settings" color="#6B6E74" size={30} />

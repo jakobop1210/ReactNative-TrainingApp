@@ -1,10 +1,12 @@
 import { StyleSheet, Text, Pressable, View } from 'react-native';
 
-export default function CreateProgramButton({ createProgram }) {
-
+export default function CreateProgramButton({ createProgram}) {
+ 
     return (
-        <Pressable 
-            onPress={createProgram}
+        <Pressable
+            onPress={(programName,  focusPoint, splitLength) => 
+                createProgram(programName, focusPoint, splitLength)
+            }
             style={({ pressed }) => [
             {
               opacity: pressed

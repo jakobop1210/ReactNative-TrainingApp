@@ -25,7 +25,7 @@ export default function ProgramDescriptionContainer({ programName, splitLength, 
                 </View>
                 <View style={styles.programListContainer}>
                     <Text style={styles.programText}>Split length: {splitLength} days</Text>
-                    <Text style={styles.programText}>FocusPoint: {focusPoint}</Text>
+                    <Text style={styles.programText}>Focuspoint: {focusPoint}</Text>
                 </View>
             </View>
         </Pressable>

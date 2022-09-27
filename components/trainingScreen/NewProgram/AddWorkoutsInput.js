@@ -10,29 +10,22 @@ export default function AddWorkoutsInput() {
             textInput: <TextInput
                             style={styles.newProgramInput} 
                             placeholder="workout name" 
-                            autoFocus={true}
+                            placeholderTextColor="#6B6E74"
                             maxLength={50}
                         />
         }
     ]);
 
     function addWorkoutInput() {
-        setWorkoutInputs(workoutInputs => [...workoutInputs, 
-            {
-                inputLabel: <Text style={styles.inputLabel}>Day {workoutInputs.length + 1}</Text>,
-                textInput: <TextInput
-                            style={styles.newProgramInput} 
-                            placeholder="workout name" 
-                            maxLength={50}
-                            />
-            }
-        ]);
+        setWorkoutInputs(workoutInputs => [...workoutInputs, workoutInputs[0]]);
     }
 
     function removeWorkoutInput() {
-        let newWorkoutInputs = [...workoutInputs];
-        newWorkoutInputs.splice(-1, 1);
-        setWorkoutInputs(newWorkoutInputs);
+        if (workoutInputs.length > 1) {
+            let newWorkoutInputs = [...workoutInputs];
+            newWorkoutInputs.splice(-1, 1);
+            setWorkoutInputs(newWorkoutInputs);
+        }
     }
 
     return (
@@ -72,8 +65,10 @@ const styles = StyleSheet.create({
         width: 200,
         padding: 5,
         fontSize: 15,
-        height: 35,
-        backgroundColor: "#EEEEEE",
+        color: "#EEEEEE",
+        height: 40,
+        borderColor: "#6B6E74",
+        borderWidth: 1,
         borderRadius: 5,
     }
 });

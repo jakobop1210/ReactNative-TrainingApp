@@ -10,27 +10,38 @@ import CreateProgramButton from '../../buttons/CreateProgramButton';
 import ModalGoBackButton from '../../buttons/ModalGoBackButton';
 
 export default function NewProgramModal({ showModal, exitModal, addProgram }) {
-    const [inputScreen, setInputScreen] = useState(< ProgramDescriptionInput showNextScreen={goToNextScreen} />);
-    const [buttonShowed, setButtonShowed] = useState(<NextButton showNextScreen={goToNextScreen}/>)
-    const [goBackButton, setGoBackButtonVisibility] = useState(<></>);
+    const [isFirstScreen, setIsFirstScreen] = useState(true);
+    const [programName, setProgramName] = useState("");
+    const [focusPoint, setFocusPoint] = useState("");
+    const [splitLength, setSplitLength] = useState(1);
+
+    
+    function changeProgramName(name) {
+        setProgramName(name);
+    }
+
+    function changeFocusPoint(focus) {
+        setFocusPoint(focus)
+    }
+
+    function changeSplitLength(splitLength) {
+        setSplitLength(splitLength)
+    }
 
     function goToNextScreen() {
-        setInputScreen(<AddWorkoutsInput />);
-        setButtonShowed(<CreateProgramButton createProgram={resetModalWhenCreatingProgram} />);
-        setGoBackButtonVisibility(<ModalGoBackButton goBack={showPreviousScreen} />);
+        setIsFirstScreen(false);
     }
 
     function showPreviousScreen() {
-        setInputScreen(<ProgramDescriptionInput />);
-        setButtonShowed(<NextButton showNextScreen={goToNextScreen} />);
-        setGoBackButtonVisibility(<></>);
+        setIsFirstScreen(true);
     }
 
     function resetModalWhenCreatingProgram() {
-        addProgram();
+        addProgram(programName, focusPoint, splitLength);
         showPreviousScreen();
         exitModal();
     }
+
 
     return (
         <Modal 
@@ -41,13 +52,29 @@ export default function NewProgramModal({ showModal, exitModal, addProgram }) {
             <View style={styles.centeredNewProgramContainer}>
                 <View style={styles.newProgramContainer}>
                     <ExitButton exitModal={exitModal} goBack={showPreviousScreen} />
-                    {goBackButton}
+                    {!isFirstScreen && <ModalGoBackButton goBack={showPreviousScreen} />}
                     <View>
                         <Text style={styles.newProgramHeader}>New program</Text>
                     </View>
-                    {inputScreen}
+                    {isFirstScreen 
+                        ? <ProgramDescriptionInput 
+                            showNextScreen={goToNextScreen} 
+                            changeName={changeProgramName} 
+                            changeFocus={changeFocusPoint} 
+                            changeLength={changeSplitLength}
+                          />
+                        : <AddWorkoutsInput />
+                    }
                     <View style={styles.buttonContainer}>
-                        {buttonShowed}
+                        {isFirstScreen 
+                            ? <NextButton showNextScreen={goToNextScreen} />
+                            : <CreateProgramButton 
+                                programName={programName} 
+                                focusPoint={focusPoint}
+                                splitLength={splitLength}
+                                createProgram={resetModalWhenCreatingProgram} 
+                              />
+                        }
                     </View>
                 </View>
             </View>
@@ -59,7 +86,7 @@ const styles = StyleSheet.create({
     centeredNewProgramContainer: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "center"
     },
     newProgramContainer: {
         flexDirection: "column",

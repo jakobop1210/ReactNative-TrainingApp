@@ -5,16 +5,14 @@ import { StyleSheet, ScrollView, View } from 'react-native';
 import Header from '../Header';
 import ProgramDescriptionContainer from './ProgramDescriptionContainer';
 import NewProgramModal from './NewProgram/NewProgramModal';
-import NewPorgramButton from '../buttons/NewProgramButton';
+import NewButton from '../buttons/NewButton';
 import EditButton from "../buttons/EditButton";
 import DoneButton from '../buttons/DoneButton';
 import DeleteButton from "../buttons/DeleteButton";
 
 export default function ProgramOverviewScreen() {
-    const newProgramButton = <NewPorgramButton title="New program" showModal={showNewProgramModal} />;
     const [modalIsVisible, setModalIsVisible] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const [bottomScreenButton, setBottomScreenButton] = useState(newProgramButton);
     const [myPrograms, setProgram] = useState([
         {
             programNr: Math.random(),
@@ -27,14 +25,14 @@ export default function ProgramOverviewScreen() {
         }
     ]);
 
-    function addNewProgramToOverview(name, description) {
+    function addNewProgramToOverview(programName, focusPoint, splitLength) {
         setProgram(myPrograms => [...myPrograms, 
             {
                 programNr: Math.random(),
                 programDescription: <ProgramDescriptionContainer 
-                        programName="Push Pull Legs" 
-                        splitLength={7} 
-                        focusPoint="Chest/arms"
+                        programName={programName} 
+                        focusPoint={focusPoint} 
+                        splitLength={splitLength}
                     /> 
             }
         ]);
@@ -57,12 +55,10 @@ export default function ProgramOverviewScreen() {
 
     function editPrograms() {
         setEditMode(true);
-        setBottomScreenButton(<DoneButton doneEdit={doneEditPrograms}/>);
     }
 
     function doneEditPrograms() {
         setEditMode(false);
-        setBottomScreenButton(newProgramButton);
     }
  
     return (
@@ -87,7 +83,10 @@ export default function ProgramOverviewScreen() {
                 </ScrollView>
             </View>
             <View style={styles.buttonContainer}>
-                {bottomScreenButton}
+                {editMode 
+                    ? <DoneButton doneEdit={doneEditPrograms}/>
+                    : <NewButton title="New program" showModal={showNewProgramModal} />
+                }
             </View>
             <NewProgramModal 
                 showModal={modalIsVisible} 
