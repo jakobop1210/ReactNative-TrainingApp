@@ -16,11 +16,13 @@ export default function ProgramScreen({ navigation, route }) {
     const [modalIsVisible, setModalIsVisible] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [workouts, setWorkouts] = useState([
-        {workoutNr: 1, workoutDescription: <WorkoutDescriptionContainer workoutName="Push 1" exercisesCount={6} totalSet={12} />},
-        {workoutNr: 2, workoutDescription: <WorkoutDescriptionContainer workoutName="Pull 1" exercisesCount={7} totalSet={14} />},
-        {workoutNr: 3, workoutDescription: <WorkoutDescriptionContainer workoutName="Push 2" exercisesCount={7} totalSet={15} />},
-        {workoutNr: 4, workoutDescription: <WorkoutDescriptionContainer workoutName="Pull 2" exercisesCount={8} totalSet={16} />},
-        {workoutNr: 5, workoutDescription: <WorkoutDescriptionContainer workoutName="Legs" exercisesCount={5} totalSet={10} />},
+        {
+            workoutNr: Math.random(), 
+            workoutDescription: <WorkoutDescriptionContainer 
+                                    workoutName="Chest/Shoulders" 
+                                    exercisesCount={6} 
+                                    totalSet={12} 
+                                />},
     ]);
 
     function editPrograms() {
@@ -37,6 +39,19 @@ export default function ProgramScreen({ navigation, route }) {
 
     function exitAddWorkoutModal() {
         setModalIsVisible(false);
+    }
+
+    function addWorkoutToScreen(workoutName) {
+        setWorkouts(workouts => [...workouts, 
+            {
+                workoutNr: Math.random(), 
+                workoutDescription: <WorkoutDescriptionContainer 
+                                    workoutName={workoutName} 
+                                    exercisesCount={0} 
+                                    totalSet={0} 
+                                />
+            }
+        ]);
     }
 
     function deleteWorkout(workoutNrDeleted) {
@@ -76,7 +91,7 @@ export default function ProgramScreen({ navigation, route }) {
             <AddWorkoutModal
                 showModal={modalIsVisible} 
                 exitModal={exitAddWorkoutModal} 
-                addProgram={AddWorkoutModal} 
+                addWorkout={addWorkoutToScreen}
             />
         </View>
     );

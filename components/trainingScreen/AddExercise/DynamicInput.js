@@ -3,39 +3,41 @@ import { StyleSheet , View, Text, TextInput, ScrollView} from 'react-native';
 import AddButton from '../../buttons/AddButton';
 import RemoveButton from '../../buttons/RemoveButton';
 
-export default function AddWorkoutsInput() {
-    const [workoutInputs, setWorkoutInputs] = useState([
+export default function DynamicInput({ labelText, placeholderText }) {
+
+    const [inputs, setInputs] = useState([
         {
-            inputLabel: <Text style={styles.inputLabel}>Day 1</Text>,
+            inputLabel: <Text style={styles.inputLabel}>{labelText} 1</Text>,
             textInput: <TextInput
-                            style={styles.newProgramInput} 
-                            placeholder="workout name" 
+                            style={styles.newInput} 
+                            placeholder={placeholderText}
                             placeholderTextColor="#6B6E74"
                             maxLength={50}
                         />
         }
     ]);
 
-    function addWorkoutInput() {
-        setWorkoutInputs(workoutInputs => [...workoutInputs, workoutInputs[0]]);
+    function addInput() {
+        setInputs(inputs => [...inputs, inputs[0]]);
     }
 
-    function removeWorkoutInput() {
-        if (workoutInputs.length > 1) {
-            let newWorkoutInputs = [...workoutInputs];
-            newWorkoutInputs.splice(-1, 1);
-            setWorkoutInputs(newWorkoutInputs);
+    function removeInput() {
+        if (inputs.length > 1) {
+            let newInputs = [...inputs];
+            newInputs.splice(-1, 1);
+            setInputs(newInputs);
         }
+
     }
 
     return (
         <>
             <View style={styles.addRemoveCotainer}>
-                <RemoveButton removeInput={removeWorkoutInput}/>
-                <AddButton addInput={addWorkoutInput}/>
+                <RemoveButton removeInput={removeInput}/>
+                <AddButton addInput={addInput}/>
             </View>
             <ScrollView style={styles.ScrollView}>
-                {workoutInputs.map((element, index) => (
+                {inputs.map((element, index) => (
                     <View key={index} style={styles.inputContainer}>
                         {element.inputLabel}
                         {element.textInput}
@@ -61,8 +63,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginRight: 10
     },
-    newProgramInput: {
-        width: 200,
+    newInput: {
+        width: 150,
         padding: 5,
         fontSize: 15,
         color: "#EEEEEE",

@@ -4,42 +4,93 @@ import { StyleSheet, ScrollView, View, Text} from 'react-native';
 //Components
 import Header from '../Header';
 import ExerciseDescription from './ExerciseDescription';
+import AddExerciseModal from './AddExercise/AddExerciseModal';
 import EditButton from "../buttons/EditButton"
-
+import DoneButton from '../buttons/DoneButton';
+import DeleteButton from "../buttons/DeleteButton";
+import NewButton from '../buttons/NewButton';
 
 export default function WorkoutScreen({ route }) {
     const workoutName = route.params.name
-    const [setList, changeSetLisr]= useState([
+    const [modalIsVisible, setModalIsVisible] = useState(false);
+    const [editMode, setEditMode] = useState(false);
+    const [setList, changeSetList]= useState([
         {setNr: 1, reps: "10"},
         {setNr: 2, reps: "10"},
         {setNr: 3, reps: "10"},
     ]);
-
     const [exercises, setExercise] = useState([
-        {exerciseNr: 1, exerciseDescription: <ExerciseDescription exerciseName="Incline DB press" setList={setList} />},
-        {exerciseNr: 2, exerciseDescription: <ExerciseDescription exerciseName="Seated cable flies" setList={setList} />},
-        {exerciseNr: 3, exerciseDescription: <ExerciseDescription exerciseName="JM smith machine press" setList={setList} />},
-        {exerciseNr: 4, exerciseDescription: <ExerciseDescription exerciseName="Cable lateral raises" setList={setList} />},
-        {exerciseNr: 5, exerciseDescription: <ExerciseDescription exerciseName="Tricpes cable extensions" setList={setList} />},
-        {exerciseNr: 6, exerciseDescription: <ExerciseDescription exerciseName="Seated DB lateral raises" setList={setList} />},
-        {exerciseNr: 7, exerciseDescription: <ExerciseDescription exerciseName="Cable rear delt flies" setList={setList} />},
+        {
+            exerciseNr: Math.random(), 
+            exerciseDescription: <ExerciseDescription exerciseName="Incline DB press" setList={setList} />},
     ]);
+
+    function editWorkout() {
+        setEditMode(true);
+    }
+
+    function doneEditWorkout() {
+        setEditMode(false);
+    }
+
+    function showAddExerciseModal() {
+        setModalIsVisible(true);
+    }
+
+    function exitAddExerciseModal() {
+        setModalIsVisible(false);
+    }
+
+    function addExerciseToScreen(exerciseName) {
+        setExercise(workouts => [...workouts, 
+            {
+                exerciseNr: Math.random(), 
+                exerciseDescription: <ExerciseDescription exerciseName={exerciseName} setList={setList} />
+            }
+        ]);
+    }
+
+    function deleteExercise(exerciseNrDeleted) {
+        setExercise(exercises => 
+            exercises.filter(exercise => {
+                return exercise.exerciseNr != exerciseNrDeleted
+            }));
+    }
+
+
 
     return (
         <View style={styles.container}>
             <Header title={workoutName} showGoBackButton={true}/>
             <View style={styles.contentContainer}>
-                <View style={styles.editButtonContainer}>
-                    <EditButton />
+                <View style={styles.buttonContainer}>
+                    {editMode && <NewButton title="Add exercise" showModal={showAddExerciseModal}/>}
+                    {!editMode && <EditButton edit={editWorkout} />}
                 </View>
                 <ScrollView style={styles.ScrollView}>
-                    {exercises.map(item => (
-                        <View key={item.exerciseNr}>
-                            {item.exerciseDescription}
+                    {exercises.map((element, index) => (
+                        <View key={index}>
+                            {editMode && 
+                                <DeleteButton 
+                                    onDelete={deleteExercise} 
+                                    programNrDeleted={element.exerciseNr} 
+                                />
+                            }
+                            {element.exerciseDescription}
                         </View>
                     ))}  
                 </ScrollView>
             </View>
+            <View style={styles.buttonContainer}>
+                {editMode &&
+                    <DoneButton doneEdit={doneEditWorkout}/>
+                }
+            </View>
+            <AddExerciseModal
+                showModal={modalIsVisible} 
+                exitModal={exitAddExerciseModal} 
+                addExercise={addExerciseToScreen}
+            />
         </View>
     );
 }
@@ -62,7 +113,8 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 40,
     },
-    editButtonContainer: {
-        height: 50,
-    }
+    buttonContainer: {
+        height: 70,
+        alignItems: "center"
+    },
 });

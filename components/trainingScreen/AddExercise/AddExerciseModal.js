@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { StyleSheet, Modal, View, Text, TextInput } from 'react-native';
 
 //Components
+import DynamicInput from './DynamicInput';
 import ExitButton from '../../buttons/ExitButton';
 import CreateButton from '../../buttons/CreateButton';
 
-export default function AddWorkoutModal({ showModal, exitModal, addWorkout }) {
-    const [workoutName, onChangeWorkoutName] = useState("");
 
-    function createWorkout() {
-        addWorkout(workoutName);
+export default function AddExerciseModal({ showModal, exitModal, addExercise }) {
+    const [exerciseName, onChangeExerciseName] = useState("");
+
+    function createExercise() {
+        addExercise(exerciseName);
         exitModal();
     }
 
@@ -19,26 +21,30 @@ export default function AddWorkoutModal({ showModal, exitModal, addWorkout }) {
             animationType="fade"
             transparent={true}
         >
-            <View style={styles.centeredNewProgramContainer}>
-                <View style={styles.newProgramContainer}>
+            <View style={styles.centeredNewExerciseContainer}>
+                <View style={styles.newExerciseContainer}>
                     <ExitButton exitModal={exitModal} />
                     <View>
-                        <Text style={styles.newProgramHeader}>New workout</Text>
+                        <Text style={styles.newExerciseHeader}>New exercise</Text>
                     </View>
-                    <View>
-                        <Text style={styles.inputLabel}>Workout name </Text>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.inputLabel}>Name </Text>
                         <TextInput
-                            style={styles.newWorkoutInput} 
-                            placeholder="program name" 
+                            style={styles.newExerciseInput} 
+                            placeholder="exercise name" 
                             placeholderTextColor="#6B6E74"
-                            onChangeText={onChangeWorkoutName}
+                            onChangeText={onChangeExerciseName}
                             maxLength={30}
                         />
                     </View>
+                    <DynamicInput 
+                        labelText="Set"
+                        placeholderText="reps"
+                    />
                     <View style={styles.buttonContainer}>
                         <CreateButton 
-                            text="Add workout" 
-                            onPress={createWorkout} 
+                            text="Add exercise" 
+                            onPress={createExercise} 
                         />
                     </View>
                 </View>
@@ -48,15 +54,15 @@ export default function AddWorkoutModal({ showModal, exitModal, addWorkout }) {
 }
 
 const styles = StyleSheet.create({
-    centeredNewProgramContainer: {
+    centeredNewExerciseContainer: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center"
     },
-    newProgramContainer: {
+    newExerciseContainer: {
         flexDirection: "column",
         alignItems: "center",
-        height: 250,
+        height: 400,
         width: 300,
         backgroundColor: "#393E46",
         padding: 10,
@@ -71,7 +77,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         elevation: 5
     },
-    newProgramHeader: {
+    newExerciseHeader: {
         color: "#FFD369",
         fontSize: 25
     },
@@ -79,13 +85,17 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 10
     },
+    nameContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 30
+    },
     inputLabel: {
         color: "#EEEEEE",
         fontSize: 18,
-        marginTop: 20,
-        marginBottom: 10
+        marginRight: 10
     },
-    newWorkoutInput: {
+    newExerciseInput: {
         width: 200,
         padding: 5,
         fontSize: 15,

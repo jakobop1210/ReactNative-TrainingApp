@@ -3,10 +3,10 @@ import { StyleSheet, Modal, View, Text, TextInput } from 'react-native';
 
 //Components
 import ProgramDescriptionInput from './ProgramDescriptionInput';
-import AddWorkoutsInput from './AddWorkoutsInput';
+import DynamicInput from '../AddExercise/DynamicInput';
 import ExitButton from '../../buttons/ExitButton';
 import NextButton from '../../buttons/NextButton';
-import CreateProgramButton from '../../buttons/CreateProgramButton';
+import CreateButton from '../../buttons/CreateButton';
 import ModalGoBackButton from '../../buttons/ModalGoBackButton';
 
 export default function NewProgramModal({ showModal, exitModal, addProgram }) {
@@ -15,7 +15,6 @@ export default function NewProgramModal({ showModal, exitModal, addProgram }) {
     const [focusPoint, setFocusPoint] = useState("");
     const [splitLength, setSplitLength] = useState(1);
 
-    
     function changeProgramName(name) {
         setProgramName(name);
     }
@@ -36,7 +35,7 @@ export default function NewProgramModal({ showModal, exitModal, addProgram }) {
         setIsFirstScreen(true);
     }
 
-    function resetModalWhenCreatingProgram() {
+    function creatingProgram() {
         addProgram(programName, focusPoint, splitLength);
         showPreviousScreen();
         exitModal();
@@ -63,16 +62,17 @@ export default function NewProgramModal({ showModal, exitModal, addProgram }) {
                             changeFocus={changeFocusPoint} 
                             changeLength={changeSplitLength}
                           />
-                        : <AddWorkoutsInput />
+                        : <DynamicInput 
+                            labelText="Day"
+                            placeholderText="workout name"
+                          />
                     }
                     <View style={styles.buttonContainer}>
                         {isFirstScreen 
                             ? <NextButton showNextScreen={goToNextScreen} />
-                            : <CreateProgramButton 
-                                programName={programName} 
-                                focusPoint={focusPoint}
-                                splitLength={splitLength}
-                                createProgram={resetModalWhenCreatingProgram} 
+                            : <CreateButton 
+                                text="Create program"
+                                onPress={creatingProgram} 
                               />
                         }
                     </View>

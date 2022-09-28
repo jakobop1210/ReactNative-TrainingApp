@@ -1,10 +1,10 @@
 import { StyleSheet, Text, Pressable, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
-export default function ExitButton({ exitModal, goBack }) {
+export default function ExitButton({ exitModal, goBack, screen }) {
 
     function exitModalAndGoBack() {
-        goBack();
+        //goBack();
         exitModal();
     }
 
