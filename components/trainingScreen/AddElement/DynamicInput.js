@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet , View, Text, TextInput, ScrollView} from 'react-native';
+import { StyleSheet , View, Text, TextInput, ScrollView, Input} from 'react-native';
 import AddButton from '../../buttons/AddButton';
 import RemoveButton from '../../buttons/RemoveButton';
 
-export default function DynamicInput({ labelText, placeholderText }) {
-
+export default function DynamicInput({ labelText, placeholderText, onChange }) {
+    const [inputFields, setInputFields] = useState([]);
     const [inputs, setInputs] = useState([
         {
             inputLabel: <Text style={styles.inputLabel}>{labelText} 1</Text>,
             textInput: <TextInput
                             style={styles.newInput} 
+                            onChangeText={(text) => setInputFields(inputFields => {
+                                return inputFields.map((item, j) => {
+                                  return j === 0 ? text : item
+                                })
+                            })}
                             placeholder={placeholderText}
                             placeholderTextColor="#6B6E74"
                             maxLength={50}
@@ -17,8 +22,27 @@ export default function DynamicInput({ labelText, placeholderText }) {
         }
     ]);
 
+    console.log(inputFields);
+
+    function handleInputChange(text) {
+
+    }
+
     function addInput() {
-        setInputs(inputs => [...inputs, inputs[0]]);
+        const inputNr = inputs.length + 1;
+        setInputs(inputs => [...inputs, 
+            {
+                inputLabel: <Text style={styles.inputLabel}>{labelText} {inputNr}</Text>,
+                textInput: <TextInput
+                            style={styles.newInput} 
+                            onChangeText={(text) => setInputFields(...inputFields, inputFields[inputNr-1] = text)}
+                            placeholder={placeholderText}
+                            placeholderTextColor="#6B6E74"
+                            maxLength={50}
+                           />
+            }
+        ]);
+
     }
 
     function removeInput() {
@@ -27,7 +51,6 @@ export default function DynamicInput({ labelText, placeholderText }) {
             newInputs.splice(-1, 1);
             setInputs(newInputs);
         }
-
     }
 
     return (

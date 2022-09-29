@@ -4,7 +4,7 @@ import { StyleSheet, ScrollView, View, Text} from 'react-native';
 //Components
 import Header from '../Header';
 import ExerciseDescription from './ExerciseDescription';
-import AddExerciseModal from './AddExercise/AddExerciseModal';
+import AddExerciseModal from './AddElement/AddExerciseModal';
 import EditButton from "../buttons/EditButton"
 import DoneButton from '../buttons/DoneButton';
 import DeleteButton from "../buttons/DeleteButton";
@@ -41,11 +41,11 @@ export default function WorkoutScreen({ route }) {
         setModalIsVisible(false);
     }
 
-    function addExerciseToScreen(exerciseName) {
+    function addExerciseToScreen(exerciseName, inputArray) {
         setExercise(workouts => [...workouts, 
             {
                 exerciseNr: Math.random(), 
-                exerciseDescription: <ExerciseDescription exerciseName={exerciseName} setList={setList} />
+                exerciseDescription: <ExerciseDescription exerciseName={exerciseName} setList={inputArray} />
             }
         ]);
     }

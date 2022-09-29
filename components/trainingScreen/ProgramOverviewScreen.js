@@ -4,7 +4,7 @@ import { StyleSheet, ScrollView, View } from 'react-native';
 //Components
 import Header from '../Header';
 import ProgramDescriptionContainer from './ProgramDescriptionContainer';
-import NewProgramModal from './NewProgram/NewProgramModal';
+import NewProgramModal from './AddElement/NewProgramModal';
 import NewButton from '../buttons/NewButton';
 import EditButton from "../buttons/EditButton";
 import DoneButton from '../buttons/DoneButton';

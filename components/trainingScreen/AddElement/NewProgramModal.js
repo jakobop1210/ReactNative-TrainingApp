@@ -3,7 +3,7 @@ import { StyleSheet, Modal, View, Text, TextInput } from 'react-native';
 
 //Components
 import ProgramDescriptionInput from './ProgramDescriptionInput';
-import DynamicInput from '../AddExercise/DynamicInput';
+import DynamicInput from './DynamicInput';
 import ExitButton from '../../buttons/ExitButton';
 import NextButton from '../../buttons/NextButton';
 import CreateButton from '../../buttons/CreateButton';

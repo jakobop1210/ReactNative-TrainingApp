@@ -11,7 +11,7 @@ export default function AddExerciseModal({ showModal, exitModal, addExercise }) 
     const [exerciseName, onChangeExerciseName] = useState("");
 
     function createExercise() {
-        addExercise(exerciseName);
+        addExercise(exerciseName, inputArray);
         exitModal();
     }
 

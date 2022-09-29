@@ -4,7 +4,7 @@ import { StyleSheet, ScrollView, View, Text} from 'react-native';
 //Components
 import Header from '../Header';
 import WorkoutDescriptionContainer from './WorkoutDescriptionContainer';
-import AddWorkoutModal from './AddWorkout/AddWorkoutModal';
+import AddWorkoutModal from './AddElement/AddWorkoutModal';
 import EditButton from "../buttons/EditButton";
 import DoneButton from '../buttons/DoneButton';
 import DeleteButton from "../buttons/DeleteButton";
